@@ -1,0 +1,3 @@
+.greeting {
+  background-image: url('require("../img/qzx.jpeg")');
+}
