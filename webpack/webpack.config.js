@@ -64,10 +64,27 @@ module.exports = {
       automaticNameDelimiter: '~',
       name: true,
       cacheGroups: {
-        vendors: {
-            test: /[\\/]node_modules[\\/]/,
-            priority: -10
+        // vendors: {
+        //     test: /[\\/]node_modules[\\/]/,
+        //     priority: -10
+        // },
+        /**
+         * 将 node_modules 中的代码 压缩成一个 叫 vendors 的js文件中。
+         * 我们自己的代码 打入到 entry 选项 配置的js 中。
+         */
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
         },
+        /**
+         * 这个不知道有什么用
+         */
+        /* commons: {
+          name: "commons",
+          chunks: "initial",
+          minChunks: 2
+        }, */
         default: {
           minChunks: 2,
           priority: -20,
