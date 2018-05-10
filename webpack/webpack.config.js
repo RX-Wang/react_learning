@@ -94,9 +94,25 @@ module.exports = {
     }
   },
   resolve: {
-    alias: {
-      "@": "src/",
-    }
+    alias: (function (src) {
+      var fs = require('fs');
+      var moduleAlias = {
+        '@root': src
+      };
+      return fs
+        .readdirSync(src)
+        .filter(function (dir) {
+          try {
+            return fs.statSync(path.resolve(src, dir)).isDirectory();
+          } catch (e) {
+            return false;
+          }
+        })
+        .reduce(function (moduleAlias, dir) {
+          moduleAlias['@' + dir] = path.resolve(src, dir);
+          return moduleAlias;
+        }, moduleAlias);
+    })(path.resolve(__dirname, '../src'))
   },
   plugins: [
     // 自动将入口js 文件插入到Html页面中。
