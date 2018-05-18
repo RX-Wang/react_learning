@@ -9,6 +9,7 @@ import ReactSortable from '@component/react-sortable';
 import SortableExampleEsnext from '@component/react-sortable/sortablejs'
 import SortableComponent from '@component/react-sortable/react-sortable-hoc'
 import AnythingSortable from '@component/react-sortable/react-anything-sortable'
+import ReactRefs from './component/react-refs';
 
 import '@css/index.css';
 
@@ -21,6 +22,7 @@ ReactDOM.render(
   // <ReactSortable />,
   // <SortableExampleEsnext />,
   // <SortableComponent />,
-  <AnythingSortable />,
+  // <AnythingSortable />,
+  <ReactRefs />,
   document.getElementById('app')
 );
