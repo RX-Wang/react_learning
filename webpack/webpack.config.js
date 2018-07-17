@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -120,5 +121,24 @@ module.exports = {
       template: path.resolve(__dirname, '..', 'src/index.html'),
     }),
     new ExtractTextPlugin('[name].css'),
+    // JS 代码丑化、混淆、压缩等功效，能有效的减小JS 文件的大小。
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        // 压缩优化
+        compress: {
+          warnings: false,
+          keep_fargs: true,
+          sequences: true,
+          dead_code: true,
+          conditionals: true,
+          booleans: true,
+          unused: true,
+          if_return: true,
+          join_vars: true,
+          drop_console: true, // 剔除代码中的console.*
+          drop_debugger: true, // 剔除代码中的 debugger
+        }
+      }
+    }),
   ],
 }
