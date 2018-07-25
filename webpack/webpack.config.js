@@ -16,6 +16,8 @@ module.exports = {
   output: {
     filename: '[name].[hash].js',
     path: path.resolve(__dirname, '..', 'build/dist'),
+    // 添加 chunkFilename -- 为了按需加载
+    chunkFilename: '[name].[chunkhash:5].chunk.js',
   },
   module: {
     rules: [
@@ -44,7 +46,7 @@ module.exports = {
           ]
         })
       }, {
-        test: /\.(png|jpg|jpeg|gif)$/,
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
         use: [
           {
             loader: 'file-loader',

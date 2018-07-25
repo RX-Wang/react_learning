@@ -7,7 +7,7 @@ export default class JSX extends React.Component {
   render() {
     return (
       <div tabIndex="1" className="greeting">
-        <h1>hello webpack?></h1>
+        <h1>hello webpack</h1>
       </div>
     );
   }
